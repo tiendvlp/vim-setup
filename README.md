@@ -7,7 +7,7 @@ These files are my config that use for neovim and tmux
 
 # Setup
 - Clone this repo into ~/.config/nvim:
-- `git clone https://github.com/tiendvlp/vim-setup.git ~/.config/nvim`
+.`git clone https://github.com/tiendvlp/vim-setup.git ~/.config/nvim`
 - Install neovim:
 - `brew install neovim`
 - Install tmux:
