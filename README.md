@@ -7,10 +7,10 @@ These files are my config that use for neovim and tmux
 
 # Setup
 - Clone this repo into ~/.config/nvim:
-`git clone https://github.com/tiendvlp/vim-setup.git nvim`
+  `git clone https://github.com/tiendvlp/vim-setup.git ~/.config/nvim`
 - Install neovim:
-`brew install neovim`
+  `brew install neovim`
 - Install tmux:
-`brew install tmux`
+  `brew install tmux`
 - Install ripgrep for live-grep features
-`brew install ripgrep`
+  `brew install ripgrep`
