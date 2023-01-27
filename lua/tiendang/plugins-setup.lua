@@ -110,8 +110,19 @@ return packer.startup(function(use)
 	use("akinsho/toggleterm.nvim")
 
 	-- AI assistance
-	use("codota/tabnine-nvim")
-
+use({
+ "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup({
+        -- optional configuration
+      })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+})
 	if packer_bootstrap then
 		require("packer").sync()
 	end
