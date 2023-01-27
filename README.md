@@ -23,9 +23,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 `brew install tmux`
 - Install ripgrep for live-grep features
 `brew install ripgrep`
+- Install lazygit
+`brew install lazygit`
 
 # Commands:
 - To apply new config for tmux:
 `tmux source ~/.config/nvim/tmux/.tmux.conf`
 - To install plugins for tmux:
 Ctrl+A (Prefix) + I (capital i)
+- To trigger git-ui
+`lazygit`
