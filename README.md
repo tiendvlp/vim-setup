@@ -26,6 +26,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Commands:
 - To apply new config for tmux:
-`tmux source ~/.config/nvim/tmux/.tmux.conf
+`tmux source ~/.config/nvim/tmux/.tmux.conf`
 - To install plugins for tmux:
 Ctrl+A (Prefix) + I (capital i)
