@@ -1,8 +1,9 @@
 -- add list of plugins to install
 require("lazy").setup({
-  "nvim-lua/plenary.nvim",
+	"nvim-lua/plenary.nvim",
 	"bluz71/vim-nightfly-guicolors", -- preferred colorscheme
 	"arzg/vim-colors-xcode",
+  { "catppuccin/nvim", name = "catppuccin" },
 	"nyoom-engineering/oxocarbon.nvim",
 	"christoomey/vim-tmux-navigator", -- tmux & split window navigation
 
