@@ -1,5 +1,6 @@
 -- add list of plugins to install
 require("lazy").setup({
+  "simrat39/rust-tools.nvim", -- rust
 	"nvim-lua/plenary.nvim",
 	"bluz71/vim-nightfly-guicolors", -- preferred colorscheme
 	"arzg/vim-colors-xcode",

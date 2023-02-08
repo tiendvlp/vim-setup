@@ -32,3 +32,9 @@ keymap.set("n", "<leader>fh", builtin.help_tags, {})
 keymap.set("n", "<leader>Db", ":call vimspector#ToggleBreakpoint()<cr>")
 keymap.set("n", "<leader>Dw", ":call vimspector#AddWatch()<cr>")
 keymap.set("n", "<leader>De", ":call vimspector#Evaluate()<cr>")
+
+--rust-tools
+local rt = 'lua require("rust-tools")'
+keymap.set("n", "<leader>ac", '<cmd>'..rt..'.code_action_group.code_action_group()<CR>', {})
+keymap.set("n", "gd", '<cmd>'..rt..'.hover_actions.hover_actions()<CR>', {})
+

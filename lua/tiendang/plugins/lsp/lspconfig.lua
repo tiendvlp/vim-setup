@@ -21,20 +21,25 @@ local keymap = vim.keymap -- for conciseness
 -- enable keybinds only for when lsp server available
 local on_attach = function(client, bufnr)
 	-- keybind options
+  vim.notify ("Attached to" .. client.name)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 
-	-- set keybinds
-	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
-	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
-	keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
+  if client.name == 'omnisharp' then
+    keymap.set("n", "gf", "<cmd>Telescope lsp_references<CR>", opts)
+  else
+  	keymap.set("n", "gf", "<cmd>Lspsaga lsp_finder<CR>", opts) -- show definition, references
+  end
+
+  keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- see definition and make edits in window
+	keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
+  keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
+	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
+	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
 	keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
 	keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
 	keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
 	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
-	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
-	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-	keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
 	keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 
 	-- typescript specific keymaps (e.g. rename file and update imports)
@@ -92,7 +97,9 @@ lspconfig["emmet_ls"].setup({
 -- configure lua server (with special settings)
 lspconfig["sumneko_lua"].setup({
 	capabilities = capabilities,
-	on_attach = on_attach,
+	on_attach = function (_, buff)
+    vim.notify "tiendang"
+  end,
 	settings = { -- custom settings for lua
 		Lua = {
 			-- make the language server recognize "vim" global
@@ -110,9 +117,32 @@ lspconfig["sumneko_lua"].setup({
 	},
 })
 
-lspconfig["rust_analyzer"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach
+local rust = require('rust-tools')
+rust.setup({
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {
+			"rustup",
+			"run",
+			"nightly",
+			"rust-analyzer",
+		},
+		settings = {
+			["rust-analyzer"] = {
+				diagnostics = {
+	  			experimental = true,
+	  		},
+	  	},
+ 	  },
+  },
+  tools = {
+    executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
+    reload_workspace_from_cargo_toml = true,
+    hover_actions = {
+      auto_focus = true
+    }
+  }
 })
 
 lspconfig["omnisharp"].setup({
@@ -124,6 +154,7 @@ lspconfig["omnisharp"].setup({
   sdk_include_prerelease = true,
   analyze_open_documents_only = false,
   capabilities = capabilities,
-  on_attach = on_attach
+  on_attach = on_attach,
+  -- cmd = { "/opt/homebrew/Cellar/omnisharp/1.35.3/libexec/run", "--languageserver" }
 })
 
