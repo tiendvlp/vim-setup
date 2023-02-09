@@ -32,3 +32,8 @@ keymap.set("n", "<leader>fh", builtin.help_tags, {})
 keymap.set("n", "<leader>Db", ":call vimspector#ToggleBreakpoint()<cr>")
 keymap.set("n", "<leader>Dw", ":call vimspector#AddWatch()<cr>")
 keymap.set("n", "<leader>De", ":call vimspector#Evaluate()<cr>")
+
+--toggleterm
+keymap.set("n", "<leader>sto", ":"..vim.v.count.."TermExec cmd='echo $0'<CR>", {})
+keymap.set("n", "<leader>sta", ":ToggleTermToggleAll<CR>", {})
+keymap.set("n", "<leader>sT", "<C-w>T", {})

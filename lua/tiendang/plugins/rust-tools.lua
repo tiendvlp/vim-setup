@@ -14,6 +14,7 @@ rust.setup({
       vim.keymap.set("n", "gd", rust.code_action_group.code_action_group, opts)
       vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
       vim.keymap.set("n", "gf", "<cmd>Telescope lsp_references<CR>", opts)
+	    vim.keymap.set("n", "<leader>d", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
     end,
     cmd = {
 			"rustup",
