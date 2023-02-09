@@ -1,4 +1,4 @@
-# nvim
+j# nvim
 These files are my config that use for neovim and tmux
 
 # Prerequisites

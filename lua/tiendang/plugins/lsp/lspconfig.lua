@@ -117,34 +117,6 @@ lspconfig["sumneko_lua"].setup({
 	},
 })
 
-local rust = require('rust-tools')
-rust.setup({
-  server = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    cmd = {
-			"rustup",
-			"run",
-			"nightly",
-			"rust-analyzer",
-		},
-		settings = {
-			["rust-analyzer"] = {
-				diagnostics = {
-	  			experimental = true,
-	  		},
-	  	},
- 	  },
-  },
-  tools = {
-    executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
-    reload_workspace_from_cargo_toml = true,
-    hover_actions = {
-      auto_focus = true
-    }
-  }
-})
-
 lspconfig["omnisharp"].setup({
   enable_editorconfig_support = true,
   enable_ms_build_load_projects_on_demand = false,
