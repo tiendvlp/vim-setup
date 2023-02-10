@@ -4,6 +4,7 @@ require("lazy").setup({
     "aserowy/tmux.nvim",
     config = function() return require("tmux").setup() end
   },
+  'akinsho/flutter-tools.nvim',
   "nikvdp/neomux",
   "simrat39/rust-tools.nvim", -- rust
 	"nvim-lua/plenary.nvim",

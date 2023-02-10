@@ -130,3 +130,10 @@ lspconfig["omnisharp"].setup({
   -- cmd = { "/opt/homebrew/Cellar/omnisharp/1.35.3/libexec/run", "--languageserver" }
 })
 
+local flutter = require('flutter-tools')
+flutter.setup({
+  lsp = {
+    on_attach = on_attach,
+    capabilities = capabilities
+  }
+})
